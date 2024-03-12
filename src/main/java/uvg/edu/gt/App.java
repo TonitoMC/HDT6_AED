@@ -97,21 +97,19 @@ public class App {
                  * Muestra las cartas del usuario
                  */
                 case 3:
-                    //cardManager.showUserCards();
-                    cardManager.mostrarCartasPorTipo();
+                    cardManager.showUserCards();
                     break;
                 /**
                  * Muestra las cartas del usuario
                  */
                 case 4:
-                    //cardManager.showUserCards();
-                    cardManager.mostrarCantidadDeCartas();
+                    cardManager.mostrarCartasPorTipoUsuario();
                     break;
                 case 5:
                     cardManager.showAvailable();
                     break;
                 case 6:
-                    cardManager.showAvailable();
+                    cardManager.mostrarCartasPorTipoDisponibles();
                 default:
                     System.out.println("Seleccion invalida");
                     break;
