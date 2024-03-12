@@ -3,8 +3,11 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeMap;
 
 /**
  * Esta clase se encarga de la funcionalidad interna del programa, almacena la informacion de las cartas
@@ -87,4 +90,65 @@ public class CardManager {
             e.printStackTrace();
         }
     }
+    /**
+     * Muestra el nombre de las cartas ordenados por tipo
+     */
+    public  void mostrarCartasPorTipo() {
+        Map<String, List<String>> cartasPorTipo = new HashMap<>();
+        
+        // Agrupar las cartas por tipo
+        for (Map.Entry<String, String> entry : this.userCards.entrySet()) {
+            String nombreCarta = entry.getKey();
+            String tipoCarta = entry.getValue();
+            
+            // Si ya existe la lista para este tipo, agregamos el nombre de la carta a la lista existente
+            if (cartasPorTipo.containsKey(tipoCarta)) {
+                cartasPorTipo.get(tipoCarta).add(nombreCarta);
+            } else {
+                // Si es la primera carta de este tipo, creamos una nueva lista y agregamos el nombre de la carta
+                List<String> listaCartas = new ArrayList<>();
+                listaCartas.add(nombreCarta);
+                cartasPorTipo.put(tipoCarta, listaCartas);
+            }
+        }
+        
+        // Mostrar las cartas agrupadas por tipo
+        for (Map.Entry<String, List<String>> entry : cartasPorTipo.entrySet()) {
+            String tipoCarta = entry.getKey();
+            List<String> cartasTipo = entry.getValue();
+            
+            System.out.println("Tipo de Carta: " + tipoCarta);
+            System.out.println("Nombres de Cartas:");
+            for (String nombreCarta : cartasTipo) {
+                System.out.println(nombreCarta);
+            }
+            System.out.println();
+        }
+    }
+    /*
+     * Muestra la cantidad de cartas ordenadas por tipo
+     */
+    public void mostrarCantidadDeCartas() {
+        Map<String, Integer> conteoCartas = new TreeMap<>();
+        
+        // Recorrer todas las cartas
+        for (Map.Entry<String, String> entry : this.userCards.entrySet()) {
+            String nombreCarta = entry.getKey();
+            String tipoCarta = entry.getValue();
+            
+            // Si ya hemos contado este tipo de carta, incrementamos su cantidad
+            if (conteoCartas.containsKey(tipoCarta)) {
+                conteoCartas.put(tipoCarta, conteoCartas.get(tipoCarta) + 1);
+            } else {
+                // Si es la primera vez que encontramos este tipo de carta, inicializamos su cantidad a 1
+                conteoCartas.put(tipoCarta, 1);
+            }
+        }
+        
+        // Mostrar el resultado
+        for (Map.Entry<String, Integer> entry : conteoCartas.entrySet()) {
+            System.out.println("Tipo: " + entry.getKey() + ", Cantidad: " + entry.getValue());
+        }
+    }
+
 }

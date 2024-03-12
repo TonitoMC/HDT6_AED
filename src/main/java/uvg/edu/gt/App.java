@@ -97,13 +97,15 @@ public class App {
                  * Muestra las cartas del usuario
                  */
                 case 3:
-                    cardManager.showUserCards();
+                    //cardManager.showUserCards();
+                    cardManager.mostrarCartasPorTipo();
                     break;
                 /**
                  * Muestra las cartas del usuario
                  */
                 case 4:
-                    cardManager.showUserCards();
+                    //cardManager.showUserCards();
+                    cardManager.mostrarCantidadDeCartas();
                     break;
                 case 5:
                     cardManager.showAvailable();
